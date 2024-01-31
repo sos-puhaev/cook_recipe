@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mir Govorit</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form method="get" class="form-control">
+                <h4>Add product in recept</h4>
+                <div class="form-group">
+                    <label for="recipes">Recipes: </label>
+                    <select name="recipes" id="recipes" class="form-control">
+                        {% for recipe in recipes %}
+                            <option value="{{ recipe.id }}">{{ recipe.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="products">Products: </label>
+                    <select name="products" id="products" class="form-control">
+                        {% for product in products %}
+                            <option value="{{ product.id }}">{{ product.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="weight_in_grams">Weight: </label>
+                    <input type="text" name="weight_in_grams" id="weight_in_grams" class="form-control" />
+                </div>
+            
+                <button type="submit" class="btn btn-primary" name = "form_type" value = "form1">Add</button>
+            </form>
+        </div>
+        <div class = "col-6">
+            <form method="get" class="form-control">
+                <h4>Add count product</h4>
+                <div class="form-group">
+                    <label for="recipes">Recipes: </label>
+                    <select name="recipes" id="recipes" class="form-control">
+                        {% for recipe in recipes %}
+                            <option value="{{ recipe.id }}">{{ recipe.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <button type="submit" class="btn btn-primary" name = "form_type" value = "form2">Add count +1</button>
+            </form>
+
+            <form method="get" class="form-control">
+                <h4>Show recept if not or 10 g</h4>
+                <div class="form-group">
+                    <label for="products">Products: </label>
+                    <select name="products" id="products" class="form-control">
+                        {% for product in products %}
+                            <option value="{{ product.id }}">{{ product.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <button type="submit" class="btn btn-primary" name = "form_type" value = "form3">Show table</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in table_show %}
+                        <tr>
+                            <td>{{ recipe.id }}</td>
+                            <td>{{ recipe.name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
